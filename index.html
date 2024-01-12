@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>MinuteMinder</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- CSS -->
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- NAVIGATION -->
+        <header>
+            <h1>MinuteMinder</h1>
+        </header>
+        
+        <!-- TABLE CONTENT -->
+        <section>
+            <table>
+                <tr>
+                    <th>User</th>
+                    <th>Task Description</th>
+                    <th>Track Work</th>
+                    <th>Total Time</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td>Erin Cameron</td>
+                    <td>Clone from github repository</td>
+                    <td><button class="start-stop">Start</button></td>
+                    <td>01:00hr</td>
+                    <td><button class="edit">Edit</button><button class="delete">Delete</button></td>
+                </tr>
+                <tr>
+                    <td>Erin Cameron</td>
+                    <td>Create CSS file</td>
+                    <td><button class="start-stop">Start</button></td>
+                    <td>02:43hr</td>
+                    <td><button class="edit">Edit</button><button class="delete">Delete</button></td>
+                </tr>
+                <tr>
+                    <td>Erin Cameron</td>
+                    <td>Research project</td>
+                    <td><button class="start-stop">Start</button></td>
+                    <td>00:12hr</td>
+                    <td><button class="edit">Edit</button><button class="delete">Delete</button></td>
+                </tr>
+            </table>
+
+            <button id="new">New Task</button>
+        </section>
+
+        <!-- NEW TIME TRACKER CONTENT -->
+        <section id="new-task" hidden>
+            <form id="new-task">
+                <fieldset>
+                    <legend>New Task:</legend>
+                    <!-- user selection -->
+                    <label for="user">Choose a user:</label>
+                    <select id="user" name="user">
+                    <option value="s" selected></option>
+                    <option value="ec">Erin Cameron</option>
+                    <option value="gvr">Guido van Rossum</option>
+                    <option value="jg">James Gosling</option>
+                    <option value="bs">Bjarne Stroustrup</option>
+                    </select> 
+                    <!-- task description -->
+                    <label for="task">Task Description:</label>
+                    <input type="text" id="task" name="task">
+                    <!-- cancel button -->
+                    <button id="cancel">Cancel</button>
+                </fieldset>
+            </form>
+        </section>
+        
+        <!-- JAVASCRIPT -->
+        <script src="js/main.js" async defer></script>
+    </body>
+</html>
