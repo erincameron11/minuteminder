@@ -1,20 +1,37 @@
+// FUNCITON: used to toggle between showing new task form and cancelling the form
 function NewTask() {
     // Define variables
-    var newTask = document.getElementById("new-task");
+    var newTask = document.getElementById("new-task-section");
+    var newCancelButton = document.getElementById("new-cancel-button");
+    var hidden = newTask.getAttribute("hidden");
+    var user = document.getElementById("user");
+    var description = document.getElementById("desc");
 
-    // If "New Task" button selected
-    if(document.getElementById("new")) {
+    // If hidden
+    if(hidden !== null) {
         newTask.removeAttribute("hidden");
+        newCancelButton.innerText = "Cancel Task";
+        newCancelButton.style.backgroundColor = "#ec7063";
+    // else, if visible
+    } else {
+        newTask.setAttribute("hidden", "hidden");
+        newCancelButton.innerText = "New Task";
+        newCancelButton.style.backgroundColor = "#58d68d";
+        // Clear the form fields
+        user.value = "s";
+        description.value = "";
     }
 }
 
-function Cancel() {
+// FUNCTION: used to submit new task information
+function SendData() {
     // Define variables
-    var newTask = document.getElementById("new-task");
+    var user = document.getElementById("user");
+    var value = user.options[user.selectedIndex].text;
+    var description = document.getElementById("desc").value;
 
-    // If "Cancel" button selected
-    if(document.getElementById("cancel")) {
-        newTask.style.opacity = '0.0';
+    // If any values are incomplete
+    if((value === "" || value == null) || (description == "" || description == null)) {
+        alert("All fields required. Please fill in all fields.")
     }
-    
 }

@@ -25,10 +25,11 @@
         
         <!-- TABLE CONTENT -->
         <section>
-            <table>
+            <table id="table-tasks">
                 <tr>
                     <th>User</th>
                     <th>Task Description</th>
+                    <th>Start Date</th>
                     <th>Track Work</th>
                     <th>Total Time</th>
                     <th></th>
@@ -36,6 +37,7 @@
                 <tr>
                     <td>Erin Cameron</td>
                     <td>Clone from github repository</td>
+                    <td>Mar 3, 2023</td>
                     <td><button class="start-stop">Start</button></td>
                     <td>01:00hr</td>
                     <td><button class="edit">Edit</button><button class="delete">Delete</button></td>
@@ -43,6 +45,7 @@
                 <tr>
                     <td>Erin Cameron</td>
                     <td>Create CSS file</td>
+                    <td>Sept 29, 2023</td>
                     <td><button class="start-stop">Start</button></td>
                     <td>02:43hr</td>
                     <td><button class="edit">Edit</button><button class="delete">Delete</button></td>
@@ -50,18 +53,19 @@
                 <tr>
                     <td>Erin Cameron</td>
                     <td>Research project</td>
+                    <td>Dec 25, 2023</td>
                     <td><button class="start-stop">Start</button></td>
                     <td>00:12hr</td>
                     <td><button class="edit">Edit</button><button class="delete">Delete</button></td>
                 </tr>
             </table>
 
-            <button id="new">New Task</button>
+            <button id="new-cancel-button" onclick="NewTask();">New Task</button>
         </section>
 
         <!-- NEW TIME TRACKER CONTENT -->
-        <section id="new-task" hidden>
-            <form id="new-task">
+        <section id="new-task-section" hidden>
+            <form>
                 <fieldset>
                     <legend>New Task:</legend>
                     <!-- user selection -->
@@ -75,9 +79,9 @@
                     </select> 
                     <!-- task description -->
                     <label for="task">Task Description:</label>
-                    <input type="text" id="task" name="task">
-                    <!-- cancel button -->
-                    <button id="cancel">Cancel</button>
+                    <input id="desc" type="text" id="task" name="task">
+                    <!-- submit button -->
+                    <input id="sub" type="submit" value="Submit" onclick="SendData();"/>
                 </fieldset>
             </form>
         </section>

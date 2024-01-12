@@ -17,7 +17,7 @@ tr:nth-child(even) {
     background-color: #dddddd;
 }
 
-button {
+button, #sub {
     padding: 10px 24px;
     border-radius: 8px;
     transition-duration: 0.4s;
@@ -42,11 +42,15 @@ button:hover {
     width: 50%;
 }
 
-#new {
+#new-cancel-button {
     background-color: #58d68d;
     float: right;
 }
 
-#new-task {
+#new-task-section {
     padding-top: 50px;
+}
+
+#sub {
+    background-color: #5dade2;
 }
