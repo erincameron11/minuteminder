@@ -22,6 +22,13 @@
         <!-- NAVIGATION -->
         <header>
             <h1>MinuteMinder</h1>
+            
+            <!-- Alternative way to display the new task and cancel task buttons -->
+            <!-- <div class="header-container">
+                <h1>MinuteMinder</h1>
+                <div id="new-task-button" class="plus-circle"></div>
+                <div id="cancel-task-button" class="x-circle"></div>
+            </div> -->
         </header>
         
         <!-- TABLE CONTENT -->
@@ -56,10 +63,12 @@
                 </tr>
             </table>
 
-            <button id="new-task-button" style="margin-top: 100px;">New Task</button>
-            <button id="cancel-task-button" style="margin-top: 100px;">Cancel Task</button>
+            <div class="container">
+                <button id="new-task-button" style="margin-top: 100px;">New Task</button>
+                <button id="cancel-task-button" style="margin-top: 100px;">Cancel Task</button>
+            </div>
         </section>
-        
+
         <!-- JAVASCRIPT -->
         <script src="js/main.js" async defer></script>
     </body>

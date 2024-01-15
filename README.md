@@ -9,9 +9,9 @@ The purpose of this project is to use front-end technologies to create a simple 
 
 ## Application Features
 * Create new tasks
-* Start and stop timers for each task
 * Cancel the creation of a new task
-* Edit the time for a task
+* Start, stop and reset timers for each task
+* Delete old tasks from the list
 
 ## Tools and Techniques
 Technologies used include:
