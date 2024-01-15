@@ -6,20 +6,23 @@ var completeButton = document.getElementById("complete");
 var deleteButton = document.getElementById("delete");
 var newTaskButton = document.getElementById("new-task-button");
 var cancelTaskButton = document.getElementById("cancel-task-button");
+cancelTaskButton.style.display = "none";
 var actionButtonRow;
 var hour = 0, minute = 0, second = 0;
 
-// GLOBAL: Add event listeners for the timer buttons
+// GLOBAL: Event listener for the timer Start button
 startButton.addEventListener('click', function() { 
     timer = true; 
     timerUtility(); 
 }); 
 
+// GLOBAL: Event listener for the timer Stop button
 stopButton.addEventListener('click', function() { 
     timer = false; 
     timerUtility();
 }); 
 
+// GLOBAL: Event listener for the timer Reset button
 resetButton.addEventListener('click', function() { 
     timer = false; 
     // Reset all values back to zero
@@ -32,34 +35,131 @@ resetButton.addEventListener('click', function() {
     document.getElementById('sec').innerHTML = "00"; 
 }); 
 
+// GLOBAL: Event listener for the Complete button
 completeButton.addEventListener('click', function() {
-    timer = false;
-    // Reset all values back to zero
-    hour = 0;
-    minute = 0;
-    second = 0;
-    // Display the zeroes
-    document.getElementById('hr').innerHTML = "00"; 
-    document.getElementById('min').innerHTML = "00"; 
-    document.getElementById('sec').innerHTML = "00"; 
+    // Get the task description data
+    var description = document.getElementById("task-description").innerHTML;
 
-    // Hide/show buttons
-    cancelTaskButton.style.display = "none";
-    newTaskButton.style.display = "inline-block";
+    // If the description value is incomplete
+    if(description == "" || description == null) {
+        alert("A description is required. Please fill in a task description.");
+
+    // Otherwise, send the data and create a new row with this data
+    } else {
+        timer = false;
+
+        // Get the user data
+        var userNames = document.getElementById("user-names");
+        let value = userNames.options[userNames.selectedIndex].innerHTML;
+
+        // Get the start date data
+        var startDate = document.getElementById("start-date").innerHTML;
+
+        // Get total time data
+        var hr = document.getElementById("hr").innerHTML;
+        var min = document.getElementById("min").innerHTML;
+        var sec = document.getElementById("sec").innerHTML;
+        var totalTime = hr + " : " + min + " : " + sec;
+
+        // Reset all values back to zero
+        hour = 0;
+        minute = 0;
+        second = 0;
+        // Display the zeroes
+        document.getElementById('hr').innerHTML = "00"; 
+        document.getElementById('min').innerHTML = "00"; 
+        document.getElementById('sec').innerHTML = "00"; 
+
+        // Hide/show buttons
+        cancelTaskButton.style.display = "none";
+        newTaskButton.style.display = "inline-block";
+
+        // Locate the table
+        var table = document.getElementById("table-tasks");
+
+        // Hide the New Task table row
+        var tableRow = document.getElementById("table-row");
+        tableRow.hidden = true;
+
+        // Create a <tr> at position -1
+        var row = table.insertRow(1);
+
+        // Create some <td> elements to add to the new row and add the details collected to this row
+        var userRow = row.insertCell(0);
+        userRow.innerHTML = value;
+        var taskDescRow = row.insertCell(1);
+        taskDescRow.innerHTML = description;
+        var startDateRow = row.insertCell(2);
+        startDateRow.innerHTML = startDate;
+        var trackWorkRow = row.insertCell(3);
+        trackWorkRow.innerHTML = "<img src=\"./images/check-mark.png\" width=\"30px\" height=\"30px\">"
+        var totalTimeRow = row.insertCell(4);
+        totalTimeRow.innerHTML = totalTime;
+        actionButtonRow = row.insertCell(5);
+        completeButton.style.display = "none";
+        actionButtonRow.innerHTML = "<button id=\"delete\" onclick=\"deleteRow(this);\">Delete</button>";
+
+        // Reset task description value
+        document.getElementById("task-description").innerHTML = "";
+    }
+
+
+
+    // OLD CODE for complete button
+     // // console.log("beginning");
+    // // var description = document.getElementById("task-description");
+
+    // // If the description field is empty, do nothing
+    // // if(description.innerHTML == "" || description.innerHTML == null) {
+    // //     // Do nothing
+    // // } else {
+       
+    //     timer = false;
+    //     // Reset all values back to zero
+    //     hour = 0;
+    //     minute = 0;
+    //     second = 0;
+    //     // Display the zeroes
+    //     document.getElementById('hr').innerHTML = "00"; 
+    //     document.getElementById('min').innerHTML = "00"; 
+    //     document.getElementById('sec').innerHTML = "00"; 
+
+    //     // Hide/show buttons
+    //     cancelTaskButton.style.display = "none";
+    //     newTaskButton.style.display = "inline-block";
+    // // }
 })
 
+// GLOBAL: Event listener for the New Task button
 newTaskButton.addEventListener('click', function() {
     timer = false;
+
+    // Hide/show buttons
     newTaskButton.style.display = "none";
     cancelTaskButton.style.display = "inline-block";
     completeButton.style.display = "inline-block";
     deleteButton.style.display = "none";
+
+    // Display the table row
+    var tableRow = document.getElementById("table-row");
+    tableRow.hidden = false;
+
+    // Task Description column
+    var taskDesc = document.getElementById("task-description");
+    taskDesc.contentEditable = true;
+
+    // Start Date column
+    var startDate = document.getElementById("start-date");
+    startDate.innerHTML = new Date().toDateString(); // Takes todays date
 })
 
+// GLOBAL: Event listener for the Cancel Task button
 cancelTaskButton.addEventListener('click', function() {
     timer = false;
     cancelTaskButton.style.display = "none";
     newTaskButton.style.display = "inline-block";
+
+    // Locate the table row to hide
     var tableRow = document.getElementById("table-row");
     tableRow.hidden = true;
 
@@ -73,6 +173,7 @@ cancelTaskButton.addEventListener('click', function() {
     document.getElementById('min').innerHTML = "00"; 
     document.getElementById('sec').innerHTML = "00"; 
 })
+
 
 // FUNCTION: used to operate the stopwatch timers
 function timerUtility() { 
@@ -121,87 +222,86 @@ function timerUtility() {
 }
 
 
-var option;
+// FUNCTION: used to create and cancel a new task
 function newTask() {
-    // Locate the table row to activate
-    var tableRow = document.getElementById("table-row");
-    tableRow.hidden = false;
+    // // Locate the table row to activate
+    // var tableRow = document.getElementById("table-row");
+    // tableRow.hidden = false;
 
-    // Task Description column
-    var taskDesc = document.getElementById("task-description");
-    taskDesc.contentEditable = true;
+    // // Task Description column
+    // var taskDesc = document.getElementById("task-description");
+    // taskDesc.contentEditable = true;
 
-    // Start Date column
-    var startDate = document.getElementById("start-date");
-    startDate.innerHTML = new Date().toDateString(); // Takes todays date
+    // // Start Date column
+    // var startDate = document.getElementById("start-date");
+    // startDate.innerHTML = new Date().toDateString(); // Takes todays date
+}
 
+
+// FUNCTION: used to cancel a new task
+function cancelTask() {
+    // // Locate the table row to activate
+    // var tableRow = document.getElementById("table-row");
+    // tableRow.hidden = true;
 }
 
 
 // FUNCTION: used to submit new task information
 function sendData() {
-    // Get the user data
-    var userNames = document.getElementById("user-names");
-    let value = userNames.options[userNames.selectedIndex].innerHTML;
+    // // Get the user data
+    // var userNames = document.getElementById("user-names");
+    // let value = userNames.options[userNames.selectedIndex].innerHTML;
 
-    // Get the task description data
-    var description = document.getElementById("task-description").innerHTML;
+    // // Get the task description data
+    // var description = document.getElementById("task-description").innerHTML;
 
-    // Get the start date data
-    var startDate = document.getElementById("start-date").innerHTML;
+    // // Get the start date data
+    // var startDate = document.getElementById("start-date").innerHTML;
 
-    // Get total time data
-    var hr = document.getElementById("hr").innerHTML;
-    var min = document.getElementById("min").innerHTML;
-    var sec = document.getElementById("sec").innerHTML;
-    var totalTime = hr + " : " + min + " : " + sec;
+    // // Get total time data
+    // var hr = document.getElementById("hr").innerHTML;
+    // var min = document.getElementById("min").innerHTML;
+    // var sec = document.getElementById("sec").innerHTML;
+    // var totalTime = hr + " : " + min + " : " + sec;
 
-    // If the description value is incomplete
-    if(description == "" || description == null) {
-        alert("A description is required. Please fill in a description.")
+    // // If the description value is incomplete
+    // if(description == "" || description == null) {
+    //     console.log("A description is required. Please fill in a task description.");
+    //     // alert("A description is required. Please fill in a task description.");
+
    
-    // Otherwise, send the data and create a new row with this data
-    } else {
-        // Locate the table
-        var table = document.getElementById("table-tasks");
+    // // Otherwise, send the data and create a new row with this data
+    // } else {
+    //     // Locate the table
+    //     var table = document.getElementById("table-tasks");
 
-        // Hide the New Task table row
-        var tableRow = document.getElementById("table-row");
-        tableRow.hidden = true;
+    //     // Hide the New Task table row
+    //     var tableRow = document.getElementById("table-row");
+    //     tableRow.hidden = true;
 
-        // Create a <tr> at position -1
-        var row = table.insertRow(1);
+    //     // Create a <tr> at position -1
+    //     var row = table.insertRow(1);
 
-        // Create some <td> elements to add to the new row
-        var userRow = row.insertCell(0);
-        userRow.innerHTML = value;
-        var taskDescRow = row.insertCell(1);
-        taskDescRow.innerHTML = description;
-        var startDateRow = row.insertCell(2);
-        startDateRow.innerHTML = startDate;
-        var trackWorkRow = row.insertCell(3);
-        trackWorkRow.innerHTML = "<img src=\"./images/check-mark.png\" width=\"30px\" height=\"30px\">"
-        var totalTimeRow = row.insertCell(4);
-        totalTimeRow.innerHTML = totalTime;
-        actionButtonRow = row.insertCell(5);
-        completeButton.style.display = "none";
-        actionButtonRow.innerHTML = "<button id=\"delete\" onclick=\"deleteRow(this);\">Delete</button>";
+    //     // Create some <td> elements to add to the new row
+    //     var userRow = row.insertCell(0);
+    //     userRow.innerHTML = value;
+    //     var taskDescRow = row.insertCell(1);
+    //     taskDescRow.innerHTML = description;
+    //     var startDateRow = row.insertCell(2);
+    //     startDateRow.innerHTML = startDate;
+    //     var trackWorkRow = row.insertCell(3);
+    //     trackWorkRow.innerHTML = "<img src=\"./images/check-mark.png\" width=\"30px\" height=\"30px\">"
+    //     var totalTimeRow = row.insertCell(4);
+    //     totalTimeRow.innerHTML = totalTime;
+    //     actionButtonRow = row.insertCell(5);
+    //     completeButton.style.display = "none";
+    //     actionButtonRow.innerHTML = "<button id=\"delete\" onclick=\"deleteRow(this);\">Delete</button>";
 
-        // Reset task description value
-        document.getElementById("task-description").innerHTML = "";
-    }
+    //     // Reset task description value
+    //     document.getElementById("task-description").innerHTML = "";
+    // }
 }
 
-function StartStop() {
-    // Define variables
-    var startStop = document.getElementById("start-stop");
-
-    if(startStop.innerText == "Start") {
-        startStop.innerText = "Stop";
-    } else {
-        startStop.innerText = "Start";
-    }
-}
 
 // FUNCTION: used to delete a row
 function deleteRow(button) {

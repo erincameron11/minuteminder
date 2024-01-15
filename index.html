@@ -44,7 +44,7 @@
                             <option value="3">Bjarne Stroustrup</option>
                         </select>
                     </td>
-                    <td id="task-description"></td>
+                    <td id="task-description" style="word-break:break-all;"></td>
                     <td id="start-date"></td>
                     <td id="track-work"><button id="start">Start</button><button id="stop">Stop</button><button id="reset">Reset</button></td>
                     <td id="total-time">
@@ -52,12 +52,12 @@
                         <span id="min">00</span><span> :</span>
                         <span id="sec">00</span>
                     </td>
-                    <td id="action-row"><button id="complete" onclick="sendData();">Complete</button><button id="delete" onclick="deleteRow(this);">Delete</button></td>
+                    <td id="action-row"><button id="complete">Complete</button><button id="delete" onclick="deleteRow(this);">Delete</button></td>
                 </tr>
             </table>
 
-            <button id="new-task-button" style="margin-top: 100px;" onclick="newTask();">New Task</button>
-            <button id="cancel-task-button" style="margin-top: 100px;" onclick="newTask();" hidden>Cancel Task</button>
+            <button id="new-task-button" style="margin-top: 100px;">New Task</button>
+            <button id="cancel-task-button" style="margin-top: 100px;">Cancel Task</button>
         </section>
         
         <!-- JAVASCRIPT -->
