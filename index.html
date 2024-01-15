@@ -52,66 +52,12 @@
                         <span id="min">00</span><span> :</span>
                         <span id="sec">00</span>
                     </td>
-                    <td id="complete-button"><button id="complete" onclick="sendData();">Complete</button></td>
+                    <td id="action-row"><button id="complete" onclick="sendData();">Complete</button><button id="delete">Delete</button></td>
                 </tr>
-                <!-- <tr>
-                    <td>Erin Cameron</td>
-                    <td>Clone from github repository</td>
-                    <td>Mar 3, 2023</td>
-                    <td><button id="start">Start</button><button id="stop">Stop</button><button id="reset">Reset</button></td>
-                    <td>
-                        <span id="hr">00</span><span> :</span>
-                        <span id="min">00</span><span> :</span>
-                        <span id="sec">00</span>
-                    </td>
-                    <td><button class="delete">Delete</button></td>
-                </tr> -->
-                <!-- <tr>
-                    <td>Erin Cameron</td>
-                    <td>Create CSS file</td>
-                    <td>Sept 29, 2023</td>
-                    <td><button id="start-stop" onclick="StartStop();">Start</button></td>
-                    <td>02:43hr</td>
-                    <td><button class="delete">Delete</button></td>
-                </tr>
-                <tr>
-                    <td>Erin Cameron</td>
-                    <td>Research project</td>
-                    <td>Dec 25, 2023</td>
-                    <td><button id="start-stop" onclick="StartStop();">Start</button></td>
-                    <td>00:12hr</td>
-                    <td><button class="delete">Delete</button></td>
-                </tr> -->
             </table>
 
-            <!-- <button id="new-cancel-button" onclick="NewTask();">New Task</button> -->
-        </section>
-
-        <!-- NEW TIME TRACKER CONTENT -->
-        <section id="new-task-section" hidden>
-            <form>
-                <fieldset>
-                    <legend>New Task:</legend>
-                    <!-- user selection -->
-                    <label for="user">Choose a user:</label>
-                    <select id="user" name="user">
-                    <option value="s" selected></option>
-                    <option value="ec">Erin Cameron</option>
-                    <option value="gvr">Guido van Rossum</option>
-                    <option value="jg">James Gosling</option>
-                    <option value="bs">Bjarne Stroustrup</option>
-                    </select> 
-                    <!-- task description -->
-                    <label for="task">Task Description:</label>
-                    <input id="desc" type="text" id="task" name="task">
-                    <!-- submit button -->
-                    <input id="sub" type="submit" value="Submit" onclick="SendData();"/>
-                </fieldset>
-            </form>
-        </section>
-
-        <section>
-            <button style="margin-top: 100px;" onclick="newTask();">New Task</button>
+            <button id="new-task-button" style="margin-top: 100px;" onclick="newTask();">New Task</button>
+            <button id="cancel-task-button" style="margin-top: 100px;" onclick="newTask();" hidden>Cancel Task</button>
         </section>
         
         <!-- JAVASCRIPT -->
