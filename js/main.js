@@ -3,9 +3,9 @@ var startButton = document.getElementById("start");
 var stopButton = document.getElementById("stop"); 
 var resetButton = document.getElementById("reset"); 
 var completeButton = document.getElementById("complete");
+var deleteButton = document.getElementById("delete");
 var newTaskButton = document.getElementById("new-task-button");
 var cancelTaskButton = document.getElementById("cancel-task-button");
-var deleteButton = document.getElementById("delete");
 var actionButtonRow;
 var hour = 0, minute = 0, second = 0;
 
@@ -52,6 +52,7 @@ newTaskButton.addEventListener('click', function() {
     timer = false;
     newTaskButton.style.display = "none";
     cancelTaskButton.style.display = "inline-block";
+    completeButton.style.display = "inline-block";
     deleteButton.style.display = "none";
 })
 
@@ -71,12 +72,6 @@ cancelTaskButton.addEventListener('click', function() {
     document.getElementById('hr').innerHTML = "00"; 
     document.getElementById('min').innerHTML = "00"; 
     document.getElementById('sec').innerHTML = "00"; 
-})
-
-deleteButton.addEventListener('click', function() {
-    timer = false;
-    // actionButtonRow.deleteRow();
-    console.log("hello there");
 })
 
 // FUNCTION: used to operate the stopwatch timers
@@ -190,8 +185,7 @@ function sendData() {
         totalTimeRow.innerHTML = totalTime;
         actionButtonRow = row.insertCell(5);
         completeButton.style.display = "none";
-        // actionButtonRow.innerHTML = "<button id=\"delete\">Delete</button>";
-        // actionButtonRow.innerHTML = document.getElementById("action-row");
+        actionButtonRow.innerHTML = "<button id=\"delete\" onclick=\"deleteRow(this);\">Delete</button>";
 
         // Reset task description value
         document.getElementById("task-description").innerHTML = "";
@@ -208,3 +202,9 @@ function StartStop() {
         startStop.innerText = "Start";
     }
 }
+
+// FUNCTION: used to delete a row
+function deleteRow(button) {
+    var row = button.parentNode.parentNode;
+    row.parentNode.removeChild(row);
+  }
