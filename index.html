@@ -3,6 +3,7 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<!-- Check mark icon reference: Correct icons created by Freepik - Flaticon.com -->
 <html>
     <head>
         <meta charset="utf-8">
@@ -31,36 +32,59 @@
                     <th>Task Description</th>
                     <th>Start Date</th>
                     <th>Track Work</th>
-                    <th>Total Time</th>
+                    <th>Total Time (hh:mm:ss)</th>
                     <th></th>
                 </tr>
-                <tr>
+                <tr id="table-row" hidden>
+                    <td id="user">
+                        <select name="users" id="user-names">
+                            <option value="0">Erin Cameron</option>
+                            <option value="1">Guido van Rossum</option>
+                            <option value="2">James Gosling</option>
+                            <option value="3">Bjarne Stroustrup</option>
+                        </select>
+                    </td>
+                    <td id="task-description"></td>
+                    <td id="start-date"></td>
+                    <td id="track-work"><button id="start">Start</button><button id="stop">Stop</button><button id="reset">Reset</button></td>
+                    <td id="total-time">
+                        <span id="hr">00</span><span> :</span>
+                        <span id="min">00</span><span> :</span>
+                        <span id="sec">00</span>
+                    </td>
+                    <td id="complete-button"><button id="complete" onclick="sendData();">Complete</button></td>
+                </tr>
+                <!-- <tr>
                     <td>Erin Cameron</td>
                     <td>Clone from github repository</td>
                     <td>Mar 3, 2023</td>
-                    <td><button class="start-stop">Start</button></td>
-                    <td>01:00hr</td>
-                    <td><button class="edit">Edit</button><button class="delete">Delete</button></td>
-                </tr>
-                <tr>
+                    <td><button id="start">Start</button><button id="stop">Stop</button><button id="reset">Reset</button></td>
+                    <td>
+                        <span id="hr">00</span><span> :</span>
+                        <span id="min">00</span><span> :</span>
+                        <span id="sec">00</span>
+                    </td>
+                    <td><button class="delete">Delete</button></td>
+                </tr> -->
+                <!-- <tr>
                     <td>Erin Cameron</td>
                     <td>Create CSS file</td>
                     <td>Sept 29, 2023</td>
-                    <td><button class="start-stop">Start</button></td>
+                    <td><button id="start-stop" onclick="StartStop();">Start</button></td>
                     <td>02:43hr</td>
-                    <td><button class="edit">Edit</button><button class="delete">Delete</button></td>
+                    <td><button class="delete">Delete</button></td>
                 </tr>
                 <tr>
                     <td>Erin Cameron</td>
                     <td>Research project</td>
                     <td>Dec 25, 2023</td>
-                    <td><button class="start-stop">Start</button></td>
+                    <td><button id="start-stop" onclick="StartStop();">Start</button></td>
                     <td>00:12hr</td>
-                    <td><button class="edit">Edit</button><button class="delete">Delete</button></td>
-                </tr>
+                    <td><button class="delete">Delete</button></td>
+                </tr> -->
             </table>
 
-            <button id="new-cancel-button" onclick="NewTask();">New Task</button>
+            <!-- <button id="new-cancel-button" onclick="NewTask();">New Task</button> -->
         </section>
 
         <!-- NEW TIME TRACKER CONTENT -->
@@ -84,6 +108,10 @@
                     <input id="sub" type="submit" value="Submit" onclick="SendData();"/>
                 </fieldset>
             </form>
+        </section>
+
+        <section>
+            <button style="margin-top: 100px;" onclick="newTask();">New Task</button>
         </section>
         
         <!-- JAVASCRIPT -->

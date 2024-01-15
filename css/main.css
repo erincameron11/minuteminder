@@ -28,22 +28,37 @@ button:hover {
     opacity: 1.0;
 }
 
-.start-stop {
-    background-color: #5dade2;
+#start {
+    background-color: #58d68d;
+    border-color: #58d68d;
+    width: 33%;
 }
 
-.edit {
-    background-color: #eb984e;
-    width: 50%;
-}
-
-.delete {
+#delete { 
     background-color: #ec7063;
-    width: 50%;
+    border-color: #ec7063;
+}
+
+#complete {
+    background-color: #5dade2;
+    border-color: #5dade2;
+}
+
+#stop {
+    background-color: #ec7063;
+    border-color: #ec7063;
+    width: 33%;
+}
+
+#reset {
+    background-color: #eb984e;
+    border-color: #eb984e;
+    width: 33%;
 }
 
 #new-cancel-button {
     background-color: #58d68d;
+    border-color: #58d68d;
     float: right;
 }
 
@@ -53,4 +68,5 @@ button:hover {
 
 #sub {
     background-color: #5dade2;
+    border-color: #5dade2;
 }
