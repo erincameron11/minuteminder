@@ -206,22 +206,3 @@ function deleteRow(button) {
     var row = button.parentNode.parentNode;
     row.parentNode.removeChild(row);
 }
-
-
-
-
-// TEST
-var newButton = document.getElementById("new-task-button");
-var cancelButton = document.getElementById("cancel-task-button");
-
-cancelButton.style.display = "none";
-
-newButton.addEventListener('click', function() {
-    newButton.style.display = "none";
-    cancelButton.style.display = "flex";
-})
-
-cancelButton.addEventListener('click', function() {
-    cancelButton.style.display = "none";
-    newButton.style.display = "flex";
-})
