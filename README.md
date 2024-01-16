@@ -25,5 +25,7 @@ The application was implemented in Visual Studio Code
 ## Run
 To run the application follow the steps below:
 1. Clone this repo
-2. Navigate to the cloned folder on your computer
-3. Open the `index.html` file in your preferred browser
+2. Navigate to the applications `server` folder on your computer
+3. Run the following command in the terminal: `node app`
+    * Note: if you do not have npm or node installed, visit `www.npmjs.com` to download
+4. Open a web browser and type in `localhost:8888/index.html`
